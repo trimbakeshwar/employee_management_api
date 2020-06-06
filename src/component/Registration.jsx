@@ -5,16 +5,16 @@ import { Button, Card, CardFooter, CardBody, CardGroup, Col, Container, Form, In
 
 class registration extends Component{ 
     constructor() {  
-    super();  
+      super();  
   
-    this.state = {  
-    firstName:'',
-    lastName:'',  
-    Qualification:'',
-    payment:'', 
-    Email:'',
-    userName:'', 
-    passWord:''
+      this.state = {  
+        firstName:'',
+        lastName:'',  
+        Qualification:'',
+        payment:'', 
+        Email:'',
+        userName:'', 
+        passWord:''
     }  
   
     this.firstName = this.firstName.bind(this);  
@@ -48,14 +48,11 @@ class registration extends Component{
     this.setState({ userName: event.target.value })  
   }  
   passWord(event) {  
-    this.passWord({ Email: event.target.value })  
+    this.passWord({ passWord: event.target.value })  
   } 
   Register(event) {  
-    fetch('') 
-  }   
-  register(event) {  
   
-    fetch('https://localhost:44329/api/Employee/', {  
+  fetch('https://localhost:44329/api/Employee/', {  
       method: 'post',  
       headers: {  
         'Accept': 'application/json',  
@@ -63,7 +60,7 @@ class registration extends Component{
       },  
       body: JSON.stringify({  
   
-        firstName = this.state.firstName,
+      /*  firstName = this.state.firstName,
         lastName = this.state.lastName,
         Qualification =this.state.Qualification,  
         payment = this.state.payment,
@@ -71,12 +68,13 @@ class registration extends Component{
         userName =this.state.userName, 
         passWord = this.state.passWord,  
         Register = this.state.Register,
-         
+         */
       })  
     }).then((Response) => Response.json())  
     .then((Result) => {  
-      if (Result.Status == 'Success')  
-              this.props.history.push("/Dashboard");  
+      if (Result.Status == true)  
+      alert('welcome !!!!!')  
+             // this.props.history.push("/Dashboard");  
       else  
         alert('Sorrrrrry !!!! Un-authenticated User !!!!!')  
     })  
@@ -129,3 +127,4 @@ render() {
 }  
 }  
 
+export default registration ;

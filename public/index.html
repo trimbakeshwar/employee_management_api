@@ -15,6 +15,7 @@
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -24,9 +25,47 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title> Employee Management System</title>
+    <style>
+      body {
+      background: url("https://www.proximgroup.com.au/wp-content/uploads/2016/06/Employee-Management-Systems.jpg") no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+    }
+
+      .navbar-custom {
+      background:rgb(204, 163, 0);  
+      color: #000080;
+      font-size:40;
+       font-weight: bold;
+      }
+    .navbar-custom .navbar-header>a {
+      color:#000080;
+      font-size:40;
+     }
+    .navbar-custom .navbar-nav>li>a {
+       color:gray;   
+      font-size:40;
+      font-weight: bold;
+      }
+    .navbar-custom .navbar-nav>li>a:hover {
+       color: black;  
+    }
+   </style>
   </head>
   <body>
+  <nav class="navbar navbar-default navbar-custom" >
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Home</a>
+    </div>        
+    <ul class="nav navbar-nav">    
+      <li><a href="/">Login</a></li>
+    </ul>
+   </div>
+  </nav> 
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <!--

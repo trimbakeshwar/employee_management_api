@@ -1,9 +1,11 @@
 
 import React, { Component } from 'react';  
 import { Button, Card, CardFooter, CardBody, CardGroup, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';  
-  
 
-class registration extends Component{ 
+import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from 'mdbreact';
+
+
+class Registration extends Component{ 
     constructor() {  
       super();  
   
@@ -60,15 +62,15 @@ class registration extends Component{
       },  
       body: JSON.stringify({  
   
-      /*  firstName = this.state.firstName,
-        lastName = this.state.lastName,
-        Qualification =this.state.Qualification,  
-        payment = this.state.payment,
-        Email = this.state.Email, 
-        userName =this.state.userName, 
-        passWord = this.state.passWord,  
-        Register = this.state.Register,
-         */
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        Qualification: this.state.Qualification,  
+        payment: this.state.payment,
+        Email: this.state.Email, 
+        userName: this.state.userName, 
+        passWord: this.state.passWord,  
+        Register: this.state.Register,
+        
       })  
     }).then((Response) => Response.json())  
     .then((Result) => {  
@@ -80,51 +82,39 @@ class registration extends Component{
     })  
 }
 render() {  
-  
+ 
   return (  
-    <div className="app flex-row align-items-center">  
-      <Container>  
-        <Row className="justify-content-center">  
-          <Col md="9" lg="7" xl="6">  
-            <Card className="mx-4">  
-              <CardBody className="p-4">  
-                <Form>  
-                  <div class="row" className="mb-2 pageheading">  
-                    <div class="col-sm-12 btn btn-primary">  
-                      Sign Up  
-                      </div>  
-                  </div>  
-                  <InputGroup className="mb-3">  
-                    <Input type="text"  onChange={this.firstName} placeholder="Enter firstName" />  
-                  </InputGroup>  
-                  <InputGroup className="mb-3">  
-                    <Input type="text"  onChange={this.lastName} placeholder="Enter lastName" />  
-                  </InputGroup>  
-                  <InputGroup className="mb-3">  
-                    <Input type="text"  onChange={this.Qualification} placeholder="Enter Qualification" />  
-                  </InputGroup>  
-                  <InputGroup className="mb-4">  
-                    <Input type="text"  onChange={this.payment} placeholder="Enter payment" />  
-                  </InputGroup>  
-                  <InputGroup className="mb-4">  
-                    <Input type="text"  onChange={this.Email} placeholder="Enter Email" />  
-                  </InputGroup> 
-                  <InputGroup className="mb-4">  
-                    <Input type="text"  onChange={this.userName} placeholder="Enter user name" />  
-                  </InputGroup>  
-                  <InputGroup className="mb-4">  
-                    <Input type="password"  onChange={this.passWord} placeholder="Enter password" />  
-                  </InputGroup>  
-                  <Button  onClick={this.register}  color="success" block>Create Account</Button>  
-                </Form>  
-              </CardBody>  
-            </Card>  
-          </Col>  
-        </Row>  
-      </Container>  
-    </div>  
+
+    <MDBContainer>
+  <MDBRow>
+    <MDBCol md="6">
+      <form>
+        <p className="h5 text-center mb-4">Sign up</p>
+        <div className="grey-text">
+          <MDBInput label="Your first name" icon="user" group type="text" validate error="wrong"
+            success="right" />
+             <MDBInput label="Your last name" icon="user" group type="text" validate error="wrong"
+            success="right" />
+             <MDBInput label="Your Qualification" icon="user" group type="text" validate error="wrong"
+            success="right" />
+             <MDBInput label="payment " icon="user" group type="text" validate error="wrong"
+            success="right" />
+          <MDBInput label="Your email" icon="envelope" group type="email" validate error="wrong"
+            success="right" />
+          <MDBInput label=" your user name" icon="user" group type="text" validate
+            error="wrong" success="right" />
+          <MDBInput label="Your password" icon="lock" group type="password" validate />
+        </div>
+        <div className="text-center">
+          <MDBBtn color="primary">Register</MDBBtn>
+        </div>
+      </form>
+    </MDBCol>
+  </MDBRow>
+</MDBContainer>
+
   );  
 }  
 }  
 
-export default registration ;
+export default Registration ;

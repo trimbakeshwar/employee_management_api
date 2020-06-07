@@ -1,6 +1,7 @@
 import React, { Component } from 'react';  
-import './App.css';  
-import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';  
+import {Link } from "react-router-dom";   
+//import { Button, Card, CardBody,CardGroup, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';  
+
 class Login extends Component {  
     constructor() {  
         super();  
@@ -13,8 +14,7 @@ class Login extends Component {
         this.Password = this.Password.bind(this);  
         this.userName = this.userName.bind(this);  
         this.login = this.login.bind(this);  
-    }  
-  
+    }   
     userName(event) {  
         this.setState({ userName: event.target.value })  
     }  
@@ -44,41 +44,26 @@ class Login extends Component {
     }  
   
     render() {  
-  
-        return (  
-            <div className="app flex-row align-items-center">  
-                <Container>  
-                    <Row className="justify-content-center">  
-                        <Col md="9" lg="7" xl="6">  
-  
-                            <CardGroup>  
-                                <Card className="p-2">  
-                                    <CardBody>  
-                                        <Form>  
-                                            <div class="row" className="mb-2 pageheading">  
-                                                <div class="col-sm-12 btn btn-primary">  
-                                                    Login  
-                                                 </div>  
-                                            </div>  
-                                            <InputGroup className="mb-3">  
-  
-                                                <Input type="text" onChange={this.userName} placeholder="Enter userName" />  
-                                            </InputGroup>  
-                                            <InputGroup className="mb-4">  
-  
-                                                <Input type="password" onChange={this.Password} placeholder="Enter Password" />  
-                                            </InputGroup>  
-                                            <Button onClick={this.login} color="success" block>Login</Button>  
-                                        </Form>  
-                                    </CardBody>  
-                                </Card>  
-                            </CardGroup>  
-                        </Col>  
-                    </Row>  
-                </Container>  
-            </div>  
-        );  
-    }  
-}  
+          return (
+            <fieldset>
+            <form  class="container">
+               <h2 align="center">Login</h2>
+          
+                 <p>Username</p>
+                    <input type="text" id="username" name="Username" onChange={this.handleChange} value={this.state.Username} placeholder="Enter Username" title="Username is required" required/>
+                 <p>Password</p>
+                    <input type="Password" name="Password" onChange={this.handleChange} value={this.state.Password} placeholder="Enter Password"  title="Password is required"  required/>
+                    <input type="checkbox" /> Remember me
+                 <div className="footer">
+                     <button type="button" onClick={this.login} className="btn"> Login </button>
+                     <Link to="/registration"><button type="button" className="btn">Create new Account</button></Link>
+                </div>
+      
+                <span class="psw">Forgot <a href="#">password?</a></span>
+             </form>
+          </fieldset>
+          );
+        };        
+    }
   
 export default Login;  

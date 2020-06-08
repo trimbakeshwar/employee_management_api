@@ -61,7 +61,7 @@ export class User extends Component {
             <TableCell align="left">payment</TableCell>
             <TableCell align="left">Email</TableCell>
             <TableCell align="left">userName</TableCell>
-            <TableCell align="left">password</TableCell>
+           
             <TableCell align="left">Edit</TableCell>
             <TableCell align="left">Delete</TableCell>
           </TableRow>
@@ -76,7 +76,7 @@ export class User extends Component {
               <TableCell align="left">{row.payment}</TableCell>
               <TableCell align="left">{row.Email}</TableCell>
               <TableCell align="left">{row.userName}</TableCell>
-              <TableCell align="left">{row.password}</TableCell>
+             
               <TableCell align="left">
                 <Button  variant="contained" style={{colour:'green'}}onClick={()=>this.edithandler(row)}>Edit</Button>
               </TableCell>

@@ -6,7 +6,7 @@ import Registration from './component/registration';
 import Login from './component/login';    
 import { BrowserRouter as Router, Route } from 'react-router-dom';   
 import User from './component/getAllEmployee';
-import Update from '/component/update'
+import Update from './component/update'
 function App() {
   return (
 
@@ -17,6 +17,8 @@ function App() {
   <Route path="/registration" component={Registration} />
   <Route path="/getAllEmployee" component={User} />
   <Route path="/update" component={Update} />
+
+
    
   </Router>
   </div>

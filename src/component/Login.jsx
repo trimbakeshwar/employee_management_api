@@ -50,9 +50,9 @@ class Login extends Component {
                <h2 align="center">Login</h2>
           
                  <p>Username</p>
-                    <input type="text" id="username" name="Username" onChange={this.handleChange} value={this.state.Username} placeholder="Enter Username" title="Username is required" required/>
+                    <input type="text" id="username" name="Username" onChange={this.handleChange}  placeholder="Enter Username" title="Username is required" required/>
                  <p>Password</p>
-                    <input type="Password" name="Password" onChange={this.handleChange} value={this.state.Password} placeholder="Enter Password"  title="Password is required"  required/>
+                    <input type="Password" name="Password" onChange={this.handleChange}  placeholder="Enter Password"  title="Password is required"  required/>
                     <input type="checkbox" /> Remember me
                  <div className="footer">
                      <button type="button" onClick={this.login} className="btn"> Login </button>

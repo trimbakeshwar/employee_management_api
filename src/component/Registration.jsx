@@ -84,37 +84,31 @@ class Registration extends Component{
 render() {  
  
   return (  
-
-    <MDBContainer>
-  <MDBRow>
-    <MDBCol md="6">
-      <form>
-        <p className="h5 text-center mb-4">Sign up</p>
-        <div className="grey-text">
-          <MDBInput label="Your first name" icon="user" group type="text" validate error="wrong"
-            success="right" />
-             <MDBInput label="Your last name" icon="user" group type="text" validate error="wrong"
-            success="right" />
-             <MDBInput label="Your Qualification" icon="user" group type="text" validate error="wrong"
-            success="right" />
-             <MDBInput label="payment " icon="user" group type="text" validate error="wrong"
-            success="right" />
-          <MDBInput label="Your email" icon="envelope" group type="email" validate error="wrong"
-            success="right" />
-          <MDBInput label=" your user name" icon="user" group type="text" validate
-            error="wrong" success="right" />
-          <MDBInput label="Your password" icon="lock" group type="password" validate />
-        </div>
-        <div className="text-center">
-          <MDBBtn color="primary">Register</MDBBtn>
-        </div>
-      </form>
-    </MDBCol>
-  </MDBRow>
-</MDBContainer>
-
+    <fieldset>
+            <form  class="container">
+               <h2 align="center">sign up</h2>
+               <p>firstname</p>
+                    <input type="text" name="firstName" name="firstName" onChange={this.handleChange} placeholder="Enter firstName" title="firstName is required" required/>
+                    <p>lastName</p>
+                    <input type="text" id="lastName" name="lastName" onChange={this.handleChange} placeholder="Enter lastName" title="lastName is required" required/>
+                    <p>Qualification</p>
+                    <input type="text" id="Qualification" name="Qualification" onChange={this.handleChange} placeholder="Enter Qualification" title="Qualification is required" required/>
+                    <p>payment</p>
+                    <input type="text" id="payment" name="payment" onChange={this.handleChange}  placeholder="Enter payment" title="payment is required" required/>
+                    <p>Email</p>
+                    <input type="text" id="Email" name="Email" onChange={this.handleChange}  placeholder="Enter Email" title="Email is required" required/>
+                    <p>userName</p>
+                    <input type="text" id="userName" name="userName" onChange={this.handleChange}  placeholder="Enter userName" title="userName is required" required/>
+                    <p>Password</p>
+                    <input type="Password" name="Password" onChange={this.handleChange}  placeholder="Enter Password"  title="Password is required"  required/>
+                    <div className="footer">
+                    <button type="button" onClick={this.Register} className="btn"> Register </button>
+                   
+                </div>
+             </form>
+          </fieldset>
   );  
 }  
-}  
+} 
 
 export default Registration ;

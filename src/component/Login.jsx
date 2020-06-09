@@ -1,46 +1,46 @@
 import React, { Component } from 'react';  
 import {Link } from "react-router-dom";   
+import empService from '../services/service'
+let service = new empService()
+
 //import { Button, Card, CardBody,CardGroup, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';  
 
 class Login extends Component {  
-    constructor() {  
-        super();  
-  
-        this.state = {  
-            userName: '',  
-            Password: ''  
-        }  
-  
-        this.Password = this.Password.bind(this);  
-        this.userName = this.userName.bind(this);  
-        this.login = this.login.bind(this);  
-    }   
-    userName(event) {  
-        this.setState({ userName: event.target.value })  
-    }  
-    Password(event) {  
-        this.setState({ Password: event.target.value })  
-    }  
-    login(event) {  
-        debugger;  
-        fetch('https://localhost:44329/api/Employee/Login', {  
-            method: 'post',  
-            headers: {  
-                'Accept': 'application/json',  
-                'Content-Type': 'application/json'  
-            },  
-            body: JSON.stringify({  
-                userName: this.state.userName,  
-                Password: this.state.Password  
-            })  
-        }).then((Response) => Response.json())  
-            .then((result) => {  
-                console.log(result);  
-                if (result.Status == false)  
-                    alert('Invalid User');  
-                //else  
-                   // this.props.history.push("/Dashboard");  
-            })  
+    constructor(props) {
+        super(props);
+        this.state={
+          Username:'',
+          Password:''
+        }
+      }
+      
+      handleChange= (e)=> { 
+        console.log(e.target.value);
+         
+        this.setState({[e.target.name]:e.target.value});  
+        console.log(this.state);
+        
+      }  
+      //method for login
+      login=(e) => {
+        e.preventDefault();
+        console.log(this.state);
+        let requestData ={
+          Username:this.state.Username,
+          Password:this.state.Password
+        }
+        service.login(requestData).then((json)=>{
+          this.props.history.push("/getAllEmployee");
+          console.log("responce data==>",json);
+        if(json.data.status===true){  
+        alert('Login Sucessfull !!');  
+        }   
+          
+        }).catch((err)=>{
+          console.log(err);
+          
+        })
+        
     }  
   
     render() {  
@@ -50,13 +50,13 @@ class Login extends Component {
                <h2 align="center">Login</h2>
           
                  <p>Username</p>
-                    <input type="text" id="username" name="Username" onChange={this.handleChange}  placeholder="Enter Username" title="Username is required" required/>
+                    <input type="text" id="username" name="Username" onChange={this.handleChange} value={this.state.Username}  placeholder="Enter Username" title="Username is required" required/>
                  <p>Password</p>
-                    <input type="Password" name="Password" onChange={this.handleChange}  placeholder="Enter Password"  title="Password is required"  required/>
+                    <input type="Password" name="Password" onChange={this.handleChange} value={this.state.Password}  placeholder="Enter Password"  title="Password is required"  required/>
                     <input type="checkbox" /> Remember me
                  <div className="footer">
-                     <button type="button" onClick={this.login} className="btn"> Login </button>
-                     <Link to="/registration"><button type="button" className="btn">Create new Account</button></Link>
+                 <button type="button" onClick={this.login} className="btn"> Login </button>
+                 <Link to="/registration"><button type="button" className="btn">Create new Account</button></Link>
                 </div>
       
                 <span class="psw">Forgot <a href="#">password?</a></span>

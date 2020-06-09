@@ -1,12 +1,16 @@
 import axios from "axios";
 
 
-export function GetAllEmployees()
-{
-
-  return axios.get('https://localhost:44329/api/Employee/')
-} ;
-export function UpdateEmployee(employeeDetails)
-{
-    return axios.patch('https://localhost:44329/api/Employee/'+employeeDetails)
+class Service {
+  //API calling for Login
+  login(data){
+      console.log(" login in axios service ",data);   
+  return   axios.get('https://localhost:44329/api/Employee/login',data);
+  }
+  registration(data){
+    console.log(" registration in axios service ",data);   
+return   axios.post('https://localhost:44329/api/Employee/',data);
 }
+}
+
+export default Service;

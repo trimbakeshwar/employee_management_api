@@ -1,6 +1,7 @@
  import React, { Component } from 'react';
- import axios from "axios";
- import { makeStyles } from '@material-ui/core/styles';
+
+ import {Link } from "react-router-dom";   
+ import '../CSS/table.css';
  import Table from '@material-ui/core/Table';
  import TableBody from '@material-ui/core/TableBody';
  import TableCell from '@material-ui/core/TableCell';
@@ -10,7 +11,8 @@
  import Paper from '@material-ui/core/Paper';
  import Button from '@material-ui/core/Button';
  import empgetDataService from '../services/service'
-const service = new empgetDataService()
+ 
+const service = new empgetDataService();
 
 
  export class User extends Component {
@@ -34,17 +36,52 @@ const service = new empgetDataService()
       console.log(err)
     })
   }
+    
+  updates = (obj) => {
+    console.log("In update Method", obj);
+    this.props.history.push('/update' + obj);
+
+}
+getspecificEmployee = (ID) => {
+  service.getspecificEmployee(ID).then((json) => {  
+      if (json.data.status === true) {
+          alert('Record for ID found successfully!!');
+      }
+  })
+}
+delete = (ID) => {
+  service.delete(ID).then((json) => {
+      if (json.data.status === true) {
+          alert('Record deleted successfully!!');
+        
+      }
+  })
+}
  
    render() {
      const{employeeData}=this.state    
      return (        
        <div className="container">
+           <h2 align="right" class="signout"> <Link to="/" align="right"><Button type="button" color="secondary" >
+                            Sign out
+              </Button></Link></h2>
+              
+              <h2 align="right" class="addEmployee"> <Link to="/addEmployeeDetails" align="right"><Button type="button" color="secondary" >
+                            Add Employee
+              </Button></Link></h2>
+              <h2 align="right" class="updateEmployee"> <Link to="/update" align="right"><Button type="button" color="secondary" >
+                            Add Employee
+              </Button></Link></h2>
+              
        <TableContainer  className="table" component={Paper} >    
-       <Table  aria-label="simple table" 
+       <Table 
+               aria-label="simple table" 
                aria-labelledby="Employee Details"            
-               aria-label="Employee Details">
+               aria-label="Employee Details"
+               id='Employee' >
        <TableHead>
         <TableRow>
+        <TableCell >id</TableCell>
              <TableCell align="left">userId</TableCell>
              <TableCell align="left">firstName</TableCell>
              <TableCell align="left">lastName</TableCell>
@@ -66,18 +103,18 @@ const service = new empgetDataService()
                       {d.userId}
                    </TableCell>
                     
-               <TableCell align="left">{d.userId}</TableCell>
+              
                <TableCell align="left">{d.firstName}</TableCell>
                <TableCell align="left">{d.lastName}</TableCell>
-               <TableCell align="left">{d.Qualification}</TableCell>
+               <TableCell align="left">{d.qualification}</TableCell>
                <TableCell align="left">{d.payment}</TableCell>
-              <TableCell align="left">{d.Email}</TableCell>
-               <TableCell align="left">{d.userName}</TableCell>
-             
+              <TableCell align="left">{d.email}</TableCell>
+               <TableCell align="left">{d.userName}</TableCell>  
                <TableCell align="left">
-                 <Button  variant="contained" style={{colour:'green'}}onClick={()=>this.edithandler(d)}>Edit</Button>
+                 
+               
                </TableCell>
-               <TableCell align="left"><Button  style={{colour:'red'}}variant="contained" colour="Red">Delete</Button></TableCell>
+               <TableCell align="left"><Button  style={{colour:'red'}}variant="contained" onClick={() => this.delete(d.userId)}>Delete</Button></TableCell>
              </TableRow>
            })
           }
@@ -92,3 +129,6 @@ const service = new empgetDataService()
  }
 
  export default User;
+/*<TableCell align="left"><Link to={{ pathname: '/update', aboutProps: { myObj: d } }}> <CustomButton type="button" onClick={() => this.update(d)} > Update </CustomButton> </Link></TableCell>
+                                        <TableCell align="right"><CustomButton type="button" onClick={() => this.delete(d.userId)} > Delete </CustomButton></TableCell>
+      */      

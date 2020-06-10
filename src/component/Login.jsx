@@ -29,7 +29,7 @@ class Login extends Component {
           Username:this.state.Username,
           Password:this.state.Password
         }
-        service.login(requestData).then((json)=>{
+        service.login(this.state.Username,this.state.Password).then((json)=>{
           this.props.history.push("/getAllEmployee");
           console.log("responce data==>",json);
         if(json.data.status===true){  

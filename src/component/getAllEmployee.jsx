@@ -9,44 +9,36 @@
  import TableRow from '@material-ui/core/TableRow';
  import Paper from '@material-ui/core/Paper';
  import Button from '@material-ui/core/Button';
- import {GetAllEmployees} from '../services/getallemployeeservices';
-  const useStyles = makeStyles({
-   table: {
-     minWidth: 650,
-   },
- });
+ import empgetDataService from '../services/service'
+const service = new empgetDataService()
+
 
  export class User extends Component {
   
    constructor(props){
-     super(props)
+     super(props);
      this.state={
        employeeData:[]
      }
    }
 
    componentDidMount(){
-     GetAllEmployees()
-     .then(responce => {
-       console.log(responce)
-       this.setState({employeeData : responce.data.data})
-     })
-     .catch(error=>{
-       console.log(error)
-     })
+     this.GetEmployees();
    }
-   edithandler=(editRow)=>{
-       console.log(editRow)
-       this.props.history.push("/update")
-   }
-  
-  
-   deleteHandler = (eve) =>{
-
-   }
+   GetEmployees = () =>{
+     service.GetEmployees().then((json) =>{
+      console.log("employee array",json);
+       this.setState({employeeData: json.data.result});
+       console.log("employee array",this.state);
+     }) .catch((err)=>{
+      console.log(err)
+    })
+  }
+ 
    render() {
      const{employeeData}=this.state    
      return (        
+       <div className="container">
        <TableContainer  className="table" component={Paper} >    
        <Table  aria-label="simple table" 
                aria-labelledby="Employee Details"            
@@ -62,30 +54,38 @@
              <TableCell align="left">userName</TableCell>
            
             <TableCell align="left">Edit</TableCell>
-             <TableCell align="left">Delete</TableCell>
+            <TableCell align="left">Delete</TableCell>
            </TableRow>
          </TableHead>
          <TableBody>
-           {employeeData.map((row) => (
-            <TableRow key={row.email}>              
-               <TableCell align="left">{row.userId}</TableCell>
-               <TableCell align="left">{row.firstName}</TableCell>
-               <TableCell align="left">{row.lastName}</TableCell>
-               <TableCell align="left">{row.Qualification}</TableCell>
-               <TableCell align="left">{row.payment}</TableCell>
-              <TableCell align="left">{row.Email}</TableCell>
-               <TableCell align="left">{row.userName}</TableCell>
+         {
+           
+            this.state.employeeData.map((d, index) => {
+              return <TableRow key={index}>
+                  <TableCell component="th" scope="id">
+                      {d.userId}
+                   </TableCell>
+                    
+               <TableCell align="left">{d.userId}</TableCell>
+               <TableCell align="left">{d.firstName}</TableCell>
+               <TableCell align="left">{d.lastName}</TableCell>
+               <TableCell align="left">{d.Qualification}</TableCell>
+               <TableCell align="left">{d.payment}</TableCell>
+              <TableCell align="left">{d.Email}</TableCell>
+               <TableCell align="left">{d.userName}</TableCell>
              
                <TableCell align="left">
-                 <Button  variant="contained" style={{colour:'green'}}onClick={()=>this.edithandler(row)}>Edit</Button>
+                 <Button  variant="contained" style={{colour:'green'}}onClick={()=>this.edithandler(d)}>Edit</Button>
                </TableCell>
                <TableCell align="left"><Button  style={{colour:'red'}}variant="contained" colour="Red">Delete</Button></TableCell>
              </TableRow>
-           ))}
+           })
+          }
+          
          </TableBody>
        </Table>
      </TableContainer>
-    
+    </div>
      );    
 
   }

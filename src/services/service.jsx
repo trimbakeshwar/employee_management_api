@@ -10,7 +10,12 @@ class Service {
   registration(data){
     console.log(" registration in axios service ",data);   
 return   axios.post('https://localhost:44329/api/Employee/',data);
+   } 
+GetEmployees(){
+  console.log(" GetAllEmployees in axios service ");
+  return axios.get('https://localhost:44329/api/Employee/');
 }
+
 }
 
 export default Service;

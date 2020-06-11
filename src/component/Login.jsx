@@ -9,8 +9,8 @@ class Login extends Component {
     constructor(props) {
         super(props);
         this.state={
-          Username:'',
-          Password:''
+          userName:'',
+          passWord:''
         }
       }
       
@@ -26,16 +26,16 @@ class Login extends Component {
         e.preventDefault();
         console.log(this.state);
         let requestData ={
-          Username:this.state.Username,
-          Password:this.state.Password
+          userName:this.state.userName,
+          passWord:this.state.passWord
         }
-        service.login(this.state.Username,this.state.Password).then((json)=>{
-          this.props.history.push("/getAllEmployee");
+        service.login(this.state.userName,this.state.passWord).then((json)=>{
+          
           console.log("responce data==>",json);
         if(json.data.status===true){  
         alert('Login Sucessfull !!');  
         }   
-          
+        this.props.history.push("/getAllEmployee");
         }).catch((err)=>{
           console.log(err);
           
@@ -50,12 +50,12 @@ class Login extends Component {
                <h2 align="center">Login</h2>
           
                  <p>Username</p>
-                    <input type="text" id="username" name="Username" onChange={this.handleChange} value={this.state.Username}  placeholder="Enter Username" title="Username is required" required/>
+                    <input type="text" id="username" name="userName" onChange={this.handleChange} value={this.state.userName}  placeholder="Enter Username" title="Username is required" required/>
                  <p>Password</p>
-                    <input type="Password" name="Password" onChange={this.handleChange} value={this.state.Password}  placeholder="Enter Password"  title="Password is required"  required/>
+                    <input type="Password" name="passWord" onChange={this.handleChange} value={this.state.passWord}  placeholder="Enter Password"  title="Password is required"  required/>
                     <input type="checkbox" /> Remember me
                  <div className="footer">
-                 <button type="button" onClick={this.login} className="btn"> Login </button>
+                 <Link to="/getAllEmployee"><button type="button" onClick={this.login} className="btn"> Login </button></Link>
                  <Link to="/registration"><button type="button" className="btn">Create new Account</button></Link>
                 </div>
       

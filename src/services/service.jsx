@@ -3,9 +3,9 @@ import axios from "axios";
 
 class Service {
   //API calling for Login
-  login(Username,Password){
-      console.log(" login in axios service ",Username,Password);   
-  return   axios.get('https://localhost:44329/api/Employee/login'+Username+Password);
+  login(userName,passWord){
+      console.log(" login in axios service ",userName,passWord);   
+  return   axios.get('https://localhost:44329/api/Employee/login/'+userName+'/'+passWord);
   }
   registration(data){
     console.log(" registration in axios service ",data);   

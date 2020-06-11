@@ -54,7 +54,7 @@ class Update extends Component{
         if(json.data.status===true){  
           alert('update Sucessfull !!');  
           } 
-         // console.log("employee detail successfully updated",data);
+          this.props.history.push('/getAllEmployee');
        
        
         

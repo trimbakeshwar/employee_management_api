@@ -47,7 +47,7 @@ class AddData extends Component{
         if(json.data.status===true){  
           alert('addition of employee  Sucessfull !!');  
           } 
-       
+          this.props.history.push('/getAllEmployee');
        
         
         

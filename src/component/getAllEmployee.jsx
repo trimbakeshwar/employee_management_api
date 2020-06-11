@@ -60,18 +60,21 @@ delete = (ID) => {
  
    render() {
      const{employeeData}=this.state    
-     return (        
-       <div className="container">
-           <h2 align="right" class="signout"> <Link to="/" align="right"><Button type="button" color="secondary" >
-                            Sign out
-              </Button></Link></h2>
-              
-              <h2 align="right" class="addEmployee"> <Link to="/addEmployeeDetails" align="right"><Button type="button" color="secondary" >
-                            Add Employee
-              </Button></Link></h2>
-              <h2 align="right" class="updateEmployee"> <Link to="/update" align="right"><Button type="button" color="secondary" >
-                            Add Employee
-              </Button></Link></h2>
+     return (  
+      <div className=".container">   
+      <h1 align="right" > <Link to="/" align="right"><Button type="button" color="secondary" >
+      Sign out
+</Button></Link></h1>
+
+<h2 align="right" > <Link to="/addEmployeeDetails" align="right"><Button type="button" color="secondary" >
+      Add Employee
+</Button></Link></h2>
+<h2 align="right" > <Link to="/update" align="right"><Button type="button" color="secondary" >
+      update Employee
+</Button></Link></h2>
+
+       <div className="table">
+           
               
        <TableContainer  className="table" component={Paper} >    
        <Table 
@@ -88,10 +91,7 @@ delete = (ID) => {
             <TableCell align="left">Qualification</TableCell>
             <TableCell align="left">payment</TableCell>
              <TableCell align="left">Email</TableCell>
-             <TableCell align="left">userName</TableCell>
-           
-            <TableCell align="left">Edit</TableCell>
-            <TableCell align="left">Delete</TableCell>
+            <TableCell align="right">Delete</TableCell>
            </TableRow>
          </TableHead>
          <TableBody>
@@ -123,12 +123,10 @@ delete = (ID) => {
        </Table>
      </TableContainer>
     </div>
+    </div>   
      );    
 
   }
  }
 
  export default User;
-/*<TableCell align="left"><Link to={{ pathname: '/update', aboutProps: { myObj: d } }}> <CustomButton type="button" onClick={() => this.update(d)} > Update </CustomButton> </Link></TableCell>
-                                        <TableCell align="right"><CustomButton type="button" onClick={() => this.delete(d.userId)} > Delete </CustomButton></TableCell>
-      */      
